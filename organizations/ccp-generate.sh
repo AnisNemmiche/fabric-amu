@@ -5,41 +5,55 @@ function one_line_pem {
 }
 
 function json_ccp {
-    local PP=$(one_line_pem $4)
-    local CP=$(one_line_pem $5)
-    sed -e "s/\${ORG}/$1/" \
-        -e "s/\${P0PORT}/$2/" \
-        -e "s/\${CAPORT}/$3/" \
-        -e "s#\${PEERPEM}#$PP#" \
-        -e "s#\${CAPEM}#$CP#" \
+    local ORG=$1
+    local ORGMSP=$2
+    local P0PORT=$3
+    local CAPORT=$4
+    local PP=$(one_line_pem $5)
+    local CP=$(one_line_pem $6)
+    sed -e "s/\${ORG}/$ORG/g" \
+        -e "s/\${ORGMSP}/$ORGMSP/g" \
+        -e "s/\${P0PORT}/$P0PORT/g" \
+        -e "s/\${CAPORT}/$CAPORT/g" \
+        -e "s#\${PEERPEM}#$PP#g" \
+        -e "s#\${CAPEM}#$CP#g" \
         organizations/ccp-template.json
 }
 
 function yaml_ccp {
-    local PP=$(one_line_pem $4)
-    local CP=$(one_line_pem $5)
-    sed -e "s/\${ORG}/$1/" \
-        -e "s/\${P0PORT}/$2/" \
-        -e "s/\${CAPORT}/$3/" \
-        -e "s#\${PEERPEM}#$PP#" \
-        -e "s#\${CAPEM}#$CP#" \
+    local ORG=$1
+    local ORGMSP=$2
+    local P0PORT=$3
+    local CAPORT=$4
+    local PP=$(one_line_pem $5)
+    local CP=$(one_line_pem $6)
+    sed -e "s/\${ORG}/$ORG/g" \
+        -e "s/\${ORGMSP}/$ORGMSP/g" \
+        -e "s/\${P0PORT}/$P0PORT/g" \
+        -e "s/\${CAPORT}/$CAPORT/g" \
+        -e "s#\${PEERPEM}#$PP#g" \
+        -e "s#\${CAPEM}#$CP#g" \
         organizations/ccp-template.yaml | sed -e $'s/\\\\n/\\\n          /g'
 }
 
-ORG=1
+# Manufacturer
+ORGMSP=Manufacturer
+ORG=manufacturer
 P0PORT=7051
 CAPORT=7054
 PEERPEM=organizations/peerOrganizations/manufacturer.amu.local/tlsca/tlsca.manufacturer.amu.local-cert.pem
 CAPEM=organizations/peerOrganizations/manufacturer.amu.local/ca/ca.manufacturer.amu.local-cert.pem
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.yaml
+echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.json
+echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.yaml
 
-ORG=2
+# Subcontractor
+ORGMSP=Subcontractor
+ORG=subcontractor
 P0PORT=9051
 CAPORT=8054
-PEERPEM=organizations/peerOrganizations/sucontractor.amu.local/tlsca/tlsca.sucontractor.amu.local-cert.pem
-CAPEM=organizations/peerOrganizations/sucontractor.amu.local/ca/ca.sucontractor.amu.local-cert.pem
+PEERPEM=organizations/peerOrganizations/subcontractor.amu.local/tlsca/tlsca.subcontractor.amu.local-cert.pem
+CAPEM=organizations/peerOrganizations/subcontractor.amu.local/ca/ca.subcontractor.amu.local-cert.pem
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/sucontractor.amu.local/connection-sucontractor.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/sucontractor.amu.local/connection-sucontractor.yaml
+echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.local/connection-subcontractor.json
+echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.local/connection-subcontractor.yaml

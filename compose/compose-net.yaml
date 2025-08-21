@@ -73,7 +73,7 @@ services:
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.manufacturer.amu.local:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.manufacturer.amu.local:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_LOCALMSPID=ManufacturerMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
       - CORE_OPERATIONS_LISTENADDRESS=peer0.manufacturer.amu.local:9444
       - CORE_METRICS_PROVIDER=prometheus
@@ -81,6 +81,7 @@ services:
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     volumes:
       - ../organizations/peerOrganizations/manufacturer.amu.local/peers/peer0.manufacturer.amu.local:/etc/hyperledger/fabric
+      - ../config:/etc/hyperledger/peercfg
       - peer0.manufacturer.amu.local:/var/hyperledger/production
     working_dir: /root
     command: peer node start
@@ -112,7 +113,7 @@ services:
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.subcontractor.amu.local:9051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.subcontractor.amu.local:9051
-      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_LOCALMSPID=SubcontractorMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
       - CORE_OPERATIONS_LISTENADDRESS=peer0.subcontractor.amu.local:9445
       - CORE_METRICS_PROVIDER=prometheus
@@ -120,6 +121,7 @@ services:
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     volumes:
       - ../organizations/peerOrganizations/subcontractor.amu.local/peers/peer0.subcontractor.amu.local:/etc/hyperledger/fabric
+      - ../config:/etc/hyperledger/peercfg
       - peer0.subcontractor.amu.local:/var/hyperledger/production
     working_dir: /root
     command: peer node start
