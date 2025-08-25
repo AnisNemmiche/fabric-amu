@@ -205,18 +205,18 @@ function createOrgs() {
 
     . organizations/cfssl/registerEnroll.sh
     #function_name cert-type   CN   org
-    peer_cert peer peer0.manufacturer.amu.local manufacturer
-    peer_cert admin Admin@manufacturer.amu.local manufacturer
+    peer_cert peer peer0.manufacturer.amu.com manufacturer
+    peer_cert admin Admin@manufacturer.amu.com manufacturer
 
     infoln "Creating Subcontractor Identities"
     #function_name cert-type   CN   org
-    peer_cert peer peer0.subcontractor.amu.local subcontractor
-    peer_cert admin Admin@subcontractor.amu.local subcontractor
+    peer_cert peer peer0.subcontractor.amu.com subcontractor
+    peer_cert admin Admin@subcontractor.amu.com subcontractor
 
     infoln "Creating Orderer Org Identities"
     #function_name cert-type   CN   
-    orderer_cert orderer orderer.amu.local
-    orderer_cert admin Admin@amu.local
+    orderer_cert orderer orderer.amu.com
+    orderer_cert admin Admin@amu.com
 
   fi 
 
@@ -238,7 +238,7 @@ function createOrgs() {
     done
 
     # Make sure CA service is initialized and can accept requests before making register and enroll calls
-    export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/manufacturer.amu.local/
+    export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/manufacturer.amu.com/
     COUNTER=0
     rc=1
     while [[ $rc -ne 0 && $COUNTER -lt $MAX_RETRY ]]; do
@@ -459,7 +459,7 @@ function networkDown() {
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
     # Bring down the network, deleting the volumes
-    ${CONTAINER_CLI} volume rm docker_orderer.amu.local docker_peer0.manufacturer.amu.local docker_peer0.subcontractor.amu.local
+    ${CONTAINER_CLI} volume rm docker_orderer.amu.com docker_peer0.manufacturer.amu.com docker_peer0.subcontractor.amu.com
     #Cleanup the chaincode containers
     clearContainers
     #Cleanup images

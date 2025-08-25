@@ -41,19 +41,19 @@ ORGMSP=Manufacturer
 ORG=manufacturer
 P0PORT=7051
 CAPORT=7054
-PEERPEM=organizations/peerOrganizations/manufacturer.amu.local/tlsca/tlsca.manufacturer.amu.local-cert.pem
-CAPEM=organizations/peerOrganizations/manufacturer.amu.local/ca/ca.manufacturer.amu.local-cert.pem
+PEERPEM=organizations/peerOrganizations/manufacturer.amu.com/tlsca/tlsca.manufacturer.amu.com-cert.pem
+CAPEM=organizations/peerOrganizations/manufacturer.amu.com/ca/ca.manufacturer.amu.com-cert.pem
 
-echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.json
-echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.local/connection-manufacturer.yaml
+echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.com/connection-manufacturer.json
+echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/manufacturer.amu.com/connection-manufacturer.yaml
 
 # Subcontractor
 ORGMSP=Subcontractor
 ORG=subcontractor
 P0PORT=9051
 CAPORT=8054
-PEERPEM=organizations/peerOrganizations/subcontractor.amu.local/tlsca/tlsca.subcontractor.amu.local-cert.pem
-CAPEM=organizations/peerOrganizations/subcontractor.amu.local/ca/ca.subcontractor.amu.local-cert.pem
+PEERPEM=organizations/peerOrganizations/subcontractor.amu.com/tlsca/tlsca.subcontractor.amu.com-cert.pem
+CAPEM=organizations/peerOrganizations/subcontractor.amu.com/ca/ca.subcontractor.amu.com-cert.pem
 
-echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.local/connection-subcontractor.json
-echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.local/connection-subcontractor.yaml
+echo "$(json_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.com/connection-subcontractor.json
+echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/subcontractor.amu.com/connection-subcontractor.yaml

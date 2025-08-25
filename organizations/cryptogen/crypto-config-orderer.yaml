@@ -11,7 +11,7 @@ OrdererOrgs:
   # Orderer
   # ---------------------------------------------------------------------------
   - Name: Orderer
-    Domain: amu.local
+    Domain: amu.com
     EnableNodeOUs: true
 
 

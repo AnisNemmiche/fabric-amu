@@ -1,6 +1,6 @@
 networks:
   amu:
-    name: amu.local
+    name: amu.com
 
 services:
 

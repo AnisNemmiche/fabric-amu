@@ -7,20 +7,20 @@ function peer_cert() {
     USER=$2
     ORG=$3
 
-    mkdir -p "organizations/peerOrganizations/$ORG.amu.local/ca"
-    mkdir -p "organizations/peerOrganizations/$ORG.amu.local/msp/cacerts"
-    mkdir -p "organizations/peerOrganizations/$ORG.amu.local/msp/tlscacerts"
-    mkdir -p "organizations/peerOrganizations/$ORG.amu.local/peers"
-    mkdir -p "organizations/peerOrganizations/$ORG.amu.local/tlsca"
+    mkdir -p "organizations/peerOrganizations/$ORG.amu.com/ca"
+    mkdir -p "organizations/peerOrganizations/$ORG.amu.com/msp/cacerts"
+    mkdir -p "organizations/peerOrganizations/$ORG.amu.com/msp/tlscacerts"
+    mkdir -p "organizations/peerOrganizations/$ORG.amu.com/peers"
+    mkdir -p "organizations/peerOrganizations/$ORG.amu.com/tlsca"
 
-    CERT_DIR=organizations/peerOrganizations/$ORG.amu.local
+    CERT_DIR=organizations/peerOrganizations/$ORG.amu.com
 
     if [ ! -f "$CERT_DIR/ca/ca-key.pem" ]; then
 
         cfssl gencert -initca "${PWD}/organizations/cfssl/ca-peer.json" | cfssljson -bare "$CERT_DIR/ca/ca"
 
-        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/tlsca/tlsca.$ORG.amu.local-cert.pem"
-        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/ca/ca.$ORG.amu.local-cert.pem"
+        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/tlsca/tlsca.$ORG.amu.com-cert.pem"
+        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/ca/ca.$ORG.amu.com-cert.pem"
 
         cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/msp/cacerts/"
         cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/msp/tlscacerts/"
@@ -55,24 +55,24 @@ function peer_cert() {
 
 function orderer_cert() {
     TYPE=$1 #orderer user
-    USER=$2 #orderer.amu.local
+    USER=$2 #orderer.amu.com
 
-    mkdir -p organizations/ordererOrganizations/amu.local/ca
-    mkdir -p organizations/ordererOrganizations/amu.local/msp/cacerts
-    mkdir -p organizations/ordererOrganizations/amu.local/msp/tlscacerts
-    mkdir -p organizations/ordererOrganizations/amu.local/orderers
-    mkdir -p organizations/ordererOrganizations/amu.local/tlsca
+    mkdir -p organizations/ordererOrganizations/amu.com/ca
+    mkdir -p organizations/ordererOrganizations/amu.com/msp/cacerts
+    mkdir -p organizations/ordererOrganizations/amu.com/msp/tlscacerts
+    mkdir -p organizations/ordererOrganizations/amu.com/orderers
+    mkdir -p organizations/ordererOrganizations/amu.com/tlsca
 
-    CERT_DIR=organizations/ordererOrganizations/amu.local
+    CERT_DIR=organizations/ordererOrganizations/amu.com
 
     if [ ! -f "$CERT_DIR/ca/ca-key.pem" ]; then
 
         cfssl gencert -initca "${PWD}/organizations/cfssl/ca-orderer.json" | cfssljson -bare "$CERT_DIR/ca/ca"
 
-        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/tlsca/tlsca.amu.local-cert.pem"
+        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/tlsca/tlsca.amu.com-cert.pem"
 
         cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/msp/cacerts/"
-        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/msp/tlscacerts/tlsca.amu.local-cert.pem"
+        cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/msp/tlscacerts/tlsca.amu.com-cert.pem"
 
         echo 'NodeOUs:
     Enable: true
@@ -224,10 +224,10 @@ function generate_orderer_certs() {
     USER=$2
 
     for DIR in cacerts keystore signcerts tlscacerts; do
-        mkdir -p "organizations/ordererOrganizations/amu.local/orderers/$USER/msp/$DIR"
+        mkdir -p "organizations/ordererOrganizations/amu.com/orderers/$USER/msp/$DIR"
     done
 
-    mkdir -p "organizations/ordererOrganizations/amu.local/orderers/$USER/tls"
+    mkdir -p "organizations/ordererOrganizations/amu.com/orderers/$USER/tls"
 
     sed -e "s/{USER}/$USER/g" <"$PWD/organizations/cfssl/orderer-csr-template.json" >"$PWD/organizations/cfssl/orderer-${USER}.json"
 
@@ -243,7 +243,7 @@ function generate_orderer_certs() {
     mv "$CERT_DIR/orderers/$USER/msp/signcerts/cert-key.pem" "$CERT_DIR/orderers/$USER/msp/keystore"
 
     cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/orderers/$USER/msp/cacerts"
-    cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/orderers/$USER/msp/tlscacerts/tlsca.amu.local-cert.pem"
+    cp "$CERT_DIR/ca/ca.pem" "$CERT_DIR/orderers/$USER/msp/tlscacerts/tlsca.amu.com-cert.pem"
 
     echo 'NodeOUs:
     Enable: true

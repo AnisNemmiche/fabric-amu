@@ -27,7 +27,7 @@ MAX_RETRY=5
 # when invoking this for org3 as test-network/scripts/org3-scripts
 # the value is changed from default as $PWD (test-network)
 # to ${PWD}/.. to make the import works
-export TEST_NETWORK_HOME="${PWD}/.."
+export TEST_NETWORK_HOME="${PWD}"
 . ${TEST_NETWORK_HOME}/scripts/envVar.sh
 
 # joinChannel ORG
@@ -60,7 +60,7 @@ BLOCKFILE="${TEST_NETWORK_HOME}/channel-artifacts/${CHANNEL_NAME}.block"
 
 echo "Fetching channel config block from orderer..."
 set -x
-peer channel fetch 0 $BLOCKFILE -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME --tls --cafile "$ORDERER_CA" >&log.txt
+peer channel fetch 0 $BLOCKFILE -o localhost:7050 --ordererTLSHostnameOverride orderer.amu.com -c $CHANNEL_NAME --tls --cafile "$ORDERER_CA" >&log.txt
 res=$?
 { set +x; } 2>/dev/null
 cat log.txt

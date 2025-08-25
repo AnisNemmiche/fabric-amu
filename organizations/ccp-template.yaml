@@ -11,20 +11,20 @@ organizations:
   ${ORG}:
     mspid: ${ORGMSP}MSP
     peers:
-    - peer0.${ORG}.amu.local
+    - peer0.${ORG}.amu.com
     certificateAuthorities:
-    - ca.${ORG}.amu.local
+    - ca.${ORG}.amu.com
 peers:
-  peer0.${ORG}.amu.local:
+  peer0.${ORG}.amu.com:
     url: grpcs://localhost:${P0PORT}
     tlsCACerts:
       pem: |
           ${PEERPEM}
     grpcOptions:
-      ssl-target-name-override: peer0.${ORG}.amu.local
-      hostnameOverride: peer0.${ORG}.amu.local
+      ssl-target-name-override: peer0.${ORG}.amu.com
+      hostnameOverride: peer0.${ORG}.amu.com
 certificateAuthorities:
-  ca.${ORG}.amu.local:
+  ca.${ORG}.amu.com:
     url: https://localhost:${CAPORT}
     caName: ca-${ORG}
     tlsCACerts:

@@ -301,16 +301,16 @@ signing:
 #     CA certificates though it can still issue end entity certificates.
 ###########################################################################
 csr:
-   cn: ca.subcontractor.amu.local
+   cn: ca.subcontractor.amu.com
    names:
       - C: UK
         ST: "Hampshire"
         L: "Hursley"
-        O: subcontractor.amu.local
+        O: subcontractor.amu.com
         OU:
    hosts:
      - localhost
-     - subcontractor.amu.local
+     - subcontractor.amu.com
    ca:
       expiry: 131400h
       pathlength: 1

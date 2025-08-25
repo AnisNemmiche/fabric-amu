@@ -1,19 +1,19 @@
 volumes:
-  orderer.amu.local:
-  orderer2.amu.local:
-  orderer3.amu.local:
-  orderer4.amu.local:
-  peer0.manufacturer.amu.local:
-  peer0.subcontractor.amu.local:
+  orderer.amu.com:
+  orderer2.amu.com:
+  orderer3.amu.com:
+  orderer4.amu.com:
+  peer0.manufacturer.amu.com:
+  peer0.subcontractor.amu.com:
 
 networks:
   amu:
-    name: amu.local
+    name: amu.com
 
 services:
 
-  orderer.amu.local:
-    container_name: orderer.amu.local
+  orderer.amu.com:
+    container_name: orderer.amu.com
     image: hyperledger/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
@@ -39,14 +39,14 @@ services:
       - ORDERER_ADMIN_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_TLS_CLIENTROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_LISTENADDRESS=0.0.0.0:7053
-      - ORDERER_OPERATIONS_LISTENADDRESS=orderer.amu.local:9443
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer.amu.com:9443
       - ORDERER_METRICS_PROVIDER=prometheus
     working_dir: /root
     command: orderer
     volumes:
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer.amu.local/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer.amu.local/tls/:/var/hyperledger/orderer/tls
-      - orderer.amu.local:/var/hyperledger/production/orderer
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer.amu.com/msp:/var/hyperledger/orderer/msp
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer.amu.com/tls/:/var/hyperledger/orderer/tls
+      - orderer.amu.com:/var/hyperledger/production/orderer
     ports:
       - 7050:7050
       - 7053:7053
@@ -54,8 +54,8 @@ services:
     networks:
       - amu
 
-  orderer2.amu.local:
-    container_name: orderer2.amu.local
+  orderer2.amu.com:
+    container_name: orderer2.amu.com
     image: hyperledger/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
@@ -81,14 +81,14 @@ services:
       - ORDERER_ADMIN_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_TLS_CLIENTROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_LISTENADDRESS=0.0.0.0:7055
-      - ORDERER_OPERATIONS_LISTENADDRESS=orderer2.amu.local:9446
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer2.amu.com:9446
       - ORDERER_METRICS_PROVIDER=prometheus
     working_dir: /root
     command: orderer
     volumes:
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer2.amu.local/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer2.amu.local/tls/:/var/hyperledger/orderer/tls
-      - orderer2.amu.local:/var/hyperledger/production/orderer
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer2.amu.com/msp:/var/hyperledger/orderer/msp
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer2.amu.com/tls/:/var/hyperledger/orderer/tls
+      - orderer2.amu.com:/var/hyperledger/production/orderer
     ports:
       - 7052:7052
       - 7055:7055
@@ -96,8 +96,8 @@ services:
     networks:
       - amu
 
-  orderer3.amu.local:
-    container_name: orderer3.amu.local
+  orderer3.amu.com:
+    container_name: orderer3.amu.com
     image: hyperledger/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
@@ -123,14 +123,14 @@ services:
       - ORDERER_ADMIN_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_TLS_CLIENTROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_LISTENADDRESS=0.0.0.0:7057
-      - ORDERER_OPERATIONS_LISTENADDRESS=orderer3.amu.local:9447
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer3.amu.com:9447
       - ORDERER_METRICS_PROVIDER=prometheus
     working_dir: /root
     command: orderer
     volumes:
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer3.amu.local/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer3.amu.local/tls/:/var/hyperledger/orderer/tls
-      - orderer3.amu.local:/var/hyperledger/production/orderer
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer3.amu.com/msp:/var/hyperledger/orderer/msp
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer3.amu.com/tls/:/var/hyperledger/orderer/tls
+      - orderer3.amu.com:/var/hyperledger/production/orderer
     ports:
       - 7056:7056
       - 7057:7057
@@ -138,8 +138,8 @@ services:
     networks:
       - amu
 
-  orderer4.amu.local:
-    container_name: orderer4.amu.local
+  orderer4.amu.com:
+    container_name: orderer4.amu.com
     image: hyperledger/fabric-orderer:latest
     labels:
       service: hyperledger-fabric
@@ -165,14 +165,14 @@ services:
       - ORDERER_ADMIN_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_TLS_CLIENTROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_ADMIN_LISTENADDRESS=0.0.0.0:7059
-      - ORDERER_OPERATIONS_LISTENADDRESS=orderer4.amu.local:9448
+      - ORDERER_OPERATIONS_LISTENADDRESS=orderer4.amu.com:9448
       - ORDERER_METRICS_PROVIDER=prometheus
     working_dir: /root
     command: orderer
     volumes:
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer4.amu.local/msp:/var/hyperledger/orderer/msp
-      - ../organizations/ordererOrganizations/amu.local/orderers/orderer4.amu.local/tls/:/var/hyperledger/orderer/tls
-      - orderer4.amu.local:/var/hyperledger/production/orderer
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer4.amu.com/msp:/var/hyperledger/orderer/msp
+      - ../organizations/ordererOrganizations/amu.com/orderers/orderer4.amu.com/tls/:/var/hyperledger/orderer/tls
+      - orderer4.amu.com:/var/hyperledger/production/orderer
     ports:
       - 7058:7058
       - 7059:7059
@@ -183,8 +183,8 @@ services:
 
 
 
-  peer0.manufacturer.amu.local:
-    container_name: peer0.manufacturer.amu.local
+  peer0.manufacturer.amu.com:
+    container_name: peer0.manufacturer.amu.com
     image: hyperledger/fabric-peer:latest
     labels:
       service: hyperledger-fabric
@@ -198,22 +198,22 @@ services:
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variables
-      - CORE_PEER_ID=peer0.manufacturer.amu.local
-      - CORE_PEER_ADDRESS=peer0.manufacturer.amu.local:7051
+      - CORE_PEER_ID=peer0.manufacturer.amu.com
+      - CORE_PEER_ADDRESS=peer0.manufacturer.amu.com:7051
       - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.manufacturer.amu.local:7052
+      - CORE_PEER_CHAINCODEADDRESS=peer0.manufacturer.amu.com:7052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.manufacturer.amu.local:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.manufacturer.amu.local:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.manufacturer.amu.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.manufacturer.amu.com:7051
       - CORE_PEER_LOCALMSPID=ManufacturerMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
-      - CORE_OPERATIONS_LISTENADDRESS=peer0.manufacturer.amu.local:9444
+      - CORE_OPERATIONS_LISTENADDRESS=peer0.manufacturer.amu.com:9444
       - CORE_METRICS_PROVIDER=prometheus
       - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer0manufacturer"}
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     volumes:
-      - ../organizations/peerOrganizations/manufacturer.amu.local/peers/peer0.manufacturer.amu.local:/etc/hyperledger/fabric
-      - peer0.manufacturer.amu.local:/var/hyperledger/production
+      - ../organizations/peerOrganizations/manufacturer.amu.com/peers/peer0.manufacturer.amu.com:/etc/hyperledger/fabric
+      - peer0.manufacturer.amu.com:/var/hyperledger/production
     working_dir: /root
     command: peer node start
     ports:
@@ -222,8 +222,8 @@ services:
     networks:
       - amu
 
-  peer0.subcontractor.amu.local:
-    container_name: peer0.subcontractor.amu.local
+  peer0.subcontractor.amu.com:
+    container_name: peer0.subcontractor.amu.com
     image: hyperledger/fabric-peer:latest
     labels:
       service: hyperledger-fabric
@@ -237,22 +237,22 @@ services:
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variables
-      - CORE_PEER_ID=peer0.subcontractor.amu.local
-      - CORE_PEER_ADDRESS=peer0.subcontractor.amu.local:9051
+      - CORE_PEER_ID=peer0.subcontractor.amu.com
+      - CORE_PEER_ADDRESS=peer0.subcontractor.amu.com:9051
       - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.subcontractor.amu.local:9052
+      - CORE_PEER_CHAINCODEADDRESS=peer0.subcontractor.amu.com:9052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.subcontractor.amu.local:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.subcontractor.amu.local:9051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.subcontractor.amu.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.subcontractor.amu.com:9051
       - CORE_PEER_LOCALMSPID=Subcontractor2MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
-      - CORE_OPERATIONS_LISTENADDRESS=peer0.subcontractor.amu.local:9445
+      - CORE_OPERATIONS_LISTENADDRESS=peer0.subcontractor.amu.com:9445
       - CORE_METRICS_PROVIDER=prometheus
       - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer0subcontractor"}
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     volumes:
-      - ../organizations/peerOrganizations/subcontractor.amu.local/peers/peer0.subcontractor.amu.local:/etc/hyperledger/fabric
-      - peer0.subcontractor.amu.local:/var/hyperledger/production
+      - ../organizations/peerOrganizations/subcontractor.amu.com/peers/peer0.subcontractor.amu.com:/etc/hyperledger/fabric
+      - peer0.subcontractor.amu.com:/var/hyperledger/production
     working_dir: /root
     command: peer node start
     ports:

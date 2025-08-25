@@ -13,27 +13,27 @@ set -e
 set -o pipefail
 
 # Where am I?
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ORDERER_CA=${DIR}/test-network/organizations/ordererOrganizations/amu.local/tlsca/tlsca.amu.local-cert.pem
-PEER0_ORG1_CA=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.local/tlsca/tlsca.manufacturer.amu.local-cert.pem
-PEER0_ORG2_CA=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.local/tlsca/tlsca.subcontractor.amu.local-cert.pem
-# PEER0_ORG3_CA=${DIR}/test-network/organizations/peerOrganizations/org3.amu.local/tlsca/tlsca.org3.amu.local-cert.pem
+ORDERER_CA=${DIR}/test-network/organizations/ordererOrganizations/amu.com/tlsca/tlsca.amu.com-cert.pem
+PEER0_MANUFACTURER_CA=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.com/tlsca/tlsca.manufacturer.amu.com-cert.pem
+PEER0_SUBCONTRACTOR_CA=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.com/tlsca/tlsca.subcontractor.amu.com-cert.pem
+# PEER0_ORG3_CA=${DIR}/test-network/organizations/peerOrganizations/org3.amu.com/tlsca/tlsca.org3.amu.com-cert.pem
 
 
 if [[ ${ORG,,} == "manufacturer" || ${ORG,,} == "digibank" ]]; then
 
    CORE_PEER_LOCALMSPID=ManufacturerMSP
-   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.local/users/Admin@manufacturer.amu.local/msp
+   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.com/users/Admin@manufacturer.amu.com/msp
    CORE_PEER_ADDRESS=localhost:7051
-   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.local/tlsca/tlsca.manufacturer.amu.local-cert.pem
+   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/manufacturer.amu.com/tlsca/tlsca.manufacturer.amu.com-cert.pem
 
 elif [[ ${ORG,,} == "subcontractor" || ${ORG,,} == "magnetocorp" ]]; then
 
    CORE_PEER_LOCALMSPID=SubcontractorMSP
-   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.local/users/Admin@subcontractor.amu.local/msp
+   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.com/users/Admin@subcontractor.amu.com/msp
    CORE_PEER_ADDRESS=localhost:9051
-   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.local/tlsca/tlsca.subcontractor.amu.local-cert.pem
+   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/subcontractor.amu.com/tlsca/tlsca.subcontractor.amu.com-cert.pem
 
 else
    echo "Unknown \"$ORG\", please choose Manufacturer/Digibank or Subcontractor/Magnetocorp"
@@ -48,8 +48,8 @@ fi
 # output the variables that need to be set
 echo "CORE_PEER_TLS_ENABLED=true"
 echo "ORDERER_CA=${ORDERER_CA}"
-echo "PEER0_ORG1_CA=${PEER0_ORG1_CA}"
-echo "PEER0_ORG2_CA=${PEER0_ORG2_CA}"
+echo "PEER0_MANUFACTURER_CA=${PEER0_MANUFACTURER_CA}"
+echo "PEER0_SUBCONTRACTOR_CA=${PEER0_SUBCONTRACTOR_CA}"
 echo "PEER0_ORG3_CA=${PEER0_ORG3_CA}"
 
 echo "CORE_PEER_MSPCONFIGPATH=${CORE_PEER_MSPCONFIGPATH}"

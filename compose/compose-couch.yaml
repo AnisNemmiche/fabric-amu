@@ -1,6 +1,6 @@
 networks:
   amu:
-    name: amu.local
+    name: amu.com
 
 services:
   couchdb0:
@@ -20,7 +20,7 @@ services:
     networks:
       - amu
 
-  peer0.manufacturer.amu.local:
+  peer0.manufacturer.amu.com:
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
@@ -49,7 +49,7 @@ services:
     networks:
       - amu
 
-  peer0.subcontractor.amu.local:
+  peer0.subcontractor.amu.com:
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
