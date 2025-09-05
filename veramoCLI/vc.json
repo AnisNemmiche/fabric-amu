@@ -1,0 +1,17 @@
+{
+  credentialSubject: {
+    'role,organization': 'subcontractor',
+    id: 'did:key:z6MkqPZNHtCZ4cNnYenPJVAhJNZkWFV2mXexqSRw6pugxqZn'
+  },
+  issuer: { id: 'did:key:z6MkgioUeYE83BZBcQ5Shtd8SNGzZyKLDS9K7Zn9QUVP2h5A' },
+  type: [ 'VerifiableCredential' ],
+  '@context': [
+    'https://www.w3.org/2018/credentials/v1',
+    'https://veramo.io/contexts/profile/v1'
+  ],
+  issuanceDate: '2025-09-05T18:15:44.000Z',
+  proof: {
+    type: 'JwtProof2020',
+    jwt: 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vdmVyYW1vLmlvL2NvbnRleHRzL3Byb2ZpbGUvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJjcmVkZW50aWFsU3ViamVjdCI6eyJyb2xlLG9yZ2FuaXphdGlvbiI6InN1YmNvbnRyYWN0b3IifX0sInN1YiI6ImRpZDprZXk6ejZNa3FQWk5IdENaNGNOblllblBKVkFoSk5aa1dGVjJtWGV4cVNSdzZwdWd4cVpuIiwibmJmIjoxNzU3MDk2MTQ0LCJpc3MiOiJkaWQ6a2V5Ono2TWtnaW9VZVlFODNCWkJjUTVTaHRkOFNOR3paeUtMRFM5SzdabjlRVVZQMmg1QSJ9.Orq3BuzLs2mgi2tjz7EgBpoOg0YE21gYzowu-RoPCyFcvpPfXtoy_wav3r_F6KeZPgj_SGKy3lS5mQiWTGX5CA'
+  }
+}

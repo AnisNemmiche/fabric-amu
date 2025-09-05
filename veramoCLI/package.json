@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@veramo/cli": "^6.0.0",
+    "@veramo/did-resolver": "^6.0.0",
+    "did-resolver": "^4.1.0",
+    "key-did-resolver": "^4.0.0",
+    "web-did-resolver": "^2.0.30"
+  }
+}
