@@ -30,8 +30,7 @@ Deploy chaincode basic
 ./network.sh deployCC -ccn basic -ccp asset-transfer-basic/chaincode-java -ccl java
 ```
 
-# DID
-
+# DID with VeramoCLi
 !!! Necessite Node.js v20 !!!
 
  Installation
