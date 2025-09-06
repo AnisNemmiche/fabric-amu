@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.21">
+<file name="/home/anis/Documents/stage/fabric-amu/asset-transfer-policy/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/AccessTokenContract.java">
+</file>
+<file name="/home/anis/Documents/stage/fabric-amu/asset-transfer-policy/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/AccessControlContract.java">
+</file>
+<file name="/home/anis/Documents/stage/fabric-amu/asset-transfer-policy/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/PolicyContract.java">
+</file>
+<file name="/home/anis/Documents/stage/fabric-amu/asset-transfer-policy/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/PolicyDecisionContract.java">
+</file>
+</checkstyle>

@@ -1,3 +1,28 @@
+# ENV Variables
+
+```bash
+# Set global variables
+export PATH=${PWD}/bin:${PWD}:$PATH
+export FABRIC_CFG_PATH=${PWD}/config
+
+# Manufacturer
+export CORE_PEER_TLS_ENABLED=true
+export CORE_PEER_LOCALMSPID=ManufacturerMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/manufacturer.amu.com/peers/peer0.manufacturer.amu.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/manufacturer.amu.com/users/Admin@manufacturer.amu.com/msp
+export CORE_PEER_ADDRESS=localhost:7051
+
+# Subcontractor
+export CORE_PEER_LOCALMSPID=SubcontractorMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/subcontractor.amu.com/peers/peer0.subcontractor.amu.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/subcontractor.amu.com/users/Admin@subcontractor.amu.com/msp
+export CORE_PEER_ADDRESS=localhost:9051
+
+# Chaincode
+export ORDERER_ADDR=localhost:7050
+export ORDERER_CA=$PWD/organizations/ordererOrganizations/amu.com/orderers/orderer.amu.com/msp/tlscacerts/tlsca.amu.com-cert.pem
+``` 
+
 # Hyperledger Fabric
 
 Remove any containers or artifacts from any previous runs
@@ -145,4 +170,67 @@ Serveur Veramo :
 
 ```bash
 npx veramo server --port 3332 --config ./agent.yml
+```
+
+# Chaincode
+
+Set chaincode variables
+```bash
+export CC=AccessControlContract
+export CHANNEL=mychannel
+
+export P1=localhost:7051
+export P1_TLS=$PWD/organizations/peerOrganizations/manufacturer.amu.com/peers/peer0.manufacturer.amu.com/tls/ca.crt
+export P2=localhost:9051
+export P2_TLS=$PWD/organizations/peerOrganizations/subcontractor.amu.com/peers/peer0.subcontractor.amu.com/tls/ca.crt
+```
+
+Deploy chaincode AccessControlContract
+
+```bash
+./network.sh deployCC -ccn $CC -ccp asset-transfer-policy/chaincode-java -ccl java
+```
+
+Get chaincode metadata
+```bash
+peer chaincode query -C $CHANNEL -n $CC -c '{"Args":["org.hyperledger.fabric:GetMetadata"]}'
+```
+
+Init ledger
+```bash
+peer chaincode invoke \
+  -o "$ORDERER_ADDR" --ordererTLSHostnameOverride orderer.amu.com \
+  --tls --cafile "$ORDERER_CA" \
+  --peerAddresses "$P1" --tlsRootCertFiles "$P1_TLS" \
+  --peerAddresses "$P2" --tlsRootCertFiles "$P2_TLS" \
+  -C "$CHANNEL" -n "$CC" --waitForEvent \
+  -c '{"Args":["AccessControlContract:requestAccess","subcontractor","subcontractor.amu.com"]}'
+```
+
+Lecture des logs d'accès
+```bash
+peer chaincode query -C "$CHANNEL" -n "$CC" \
+  -c '{"Args":["AccessControlContract:ListAccessLogs"]}'
+```
+
+Test deny access
+```bash
+peer chaincode invoke -o "$ORDERER_ADDR" --ordererTLSHostnameOverride orderer.amu.com \
+ --tls --cafile "$ORDERER_CA" \
+ --peerAddresses "$P1" --tlsRootCertFiles "$P1_TLS" \
+ --peerAddresses "$P2" --tlsRootCertFiles "$P2_TLS" \
+ -C "$CHANNEL" -n "$CC" --waitForEvent \
+ -c '{"Args":["AccessControlContract:requestAccess","subcontractor","notamu.com"]}'
+ ```
+
+Lecture des logs d'accès
+```bash
+peer chaincode query -C "$CHANNEL" -n "$CC" -c '{"Args":["AccessControlContract:ListAccessLogs"]}' | jq
+```
+
+Test de Request access avec une lecture seul donc non enregistré
+```bash
+peer chaincode query -C $CHANNEL -n $CC -c '{
+  "Args":["AccessControlContract:requestAccess","subcontractor","subcontractor.amu.com"]
+}'
 ```
