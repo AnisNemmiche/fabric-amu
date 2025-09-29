@@ -1,18 +1,16 @@
 package org.hyperledger.fabric.samples.assettransfer;
 
-public final class PolicyContract {
+import org.hyperledger.fabric.contract.ContractInterface;
+import org.hyperledger.fabric.contract.annotation.Contract;
+import org.hyperledger.fabric.contract.annotation.Transaction;
+
+@Contract(name = "AccessTokenContract")
+public final class PolicyContract implements ContractInterface {
     private final String allowedRole = "subcontractor";
-    private final String allowedOrg = "subcontractor.amu.com";
+    private final String allowedContractNumber = "SUB-2025";
 
-    public boolean isAllowed(final String role, final String org) {
-        return allowedRole.equals(role) && allowedOrg.equals(org);
-    }
-
-    public String getAllowedRole() {
-        return allowedRole;
-    }
-
-    public String getAllowedOrg() {
-        return allowedOrg;
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public boolean isAllowed(final String role, final String contractNumber) {
+        return allowedRole.equals(role) && allowedContractNumber.equals(contractNumber);
     }
 }
